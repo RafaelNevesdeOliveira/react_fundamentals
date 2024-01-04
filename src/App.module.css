@@ -9,3 +9,15 @@
     gap:2rem;
     align-items: stretch;
 }
+
+/* menor que 760px é para mobile */
+@media (max-width: 768px) {
+    html {
+      font-size: 87.5%;
+    }
+  
+    /* colocar a side bar para cima, ao invez de duas colunas apenas uma */
+    .wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
