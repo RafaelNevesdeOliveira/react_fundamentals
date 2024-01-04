@@ -4,10 +4,6 @@ import { Sidebar } from "./components/Sidebar";
 import styles from "./App.module.css";
 import "./global.css";
 
-//author: {avatar_url; '', name: '', role: ''}
-//publishedAt: Date
-//content:
-
 const posts = [
   {
     id: 1,
