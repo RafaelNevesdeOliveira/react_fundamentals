@@ -4,23 +4,27 @@ import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 
 import styles from "./Post.module.css";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 
-// interface IPost{
-//   id: number,
-//   author: {
-//     avatarUrl:string,
-//     name:string,
-//     role:string,
-//   },
-//   publishedAt: Date,
-//   content: {
-//     type: string,
-//     content: string,
-//   }
-// }
+interface Author{
+  avatarUrl:string,
+  name:string,
+  role:string,
+}
 
-export function Post({ author, publishedAt, content }) {
+interface Content{
+  type: string,
+  content: string,
+}
+
+interface PostProps{
+  id: number,
+  author: Author
+  publishedAt: Date,
+  content: Content[]
+}
+
+export function Post({ author, publishedAt, content }:PostProps) {
   const [comments, setComments] = useState(["Post muito bacana, hein?!"]);
 
   const [newCommentText, setNewCommentText] = useState("");
@@ -34,23 +38,23 @@ export function Post({ author, publishedAt, content }) {
     addSuffix: true,
   });
 
-  function handleCreateNewComment() {
+  function handleCreateNewComment(event: FormEvent) {
     event.preventDefault();
 
     setComments([...comments, newCommentText]);
     setNewCommentText("");
   }
 
-  function handleNewCommentChange() {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   }
 
-  function handleNewCommentInvalid() {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("Esse campo é obrigatório!");
   }
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(commentToDelete: string) {
     const commentsWithoutDeletoneOne = comments.filter((comment) => {
       return comment !== commentToDelete;
     });
@@ -81,7 +85,7 @@ export function Post({ author, publishedAt, content }) {
       </header>
 
       <div className={styles.content}>
-        {content.map((line) => {
+        {content.map((line:Content) => {
           if (line.type === "paragraph") {
             return <p key={line.content}>{line.content}</p>;
           } else if (line.type === "link") {
