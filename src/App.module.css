@@ -1,0 +1,23 @@
+.wrapper{
+    max-width: 70rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+
+    display: grid;
+    /* Primeira coluna vai ter 256px e a segunda flexivel */
+    grid-template-columns: 256px 1fr;
+    gap:2rem;
+    align-items: stretch;
+}
+
+/* menor que 760px é para mobile */
+@media (max-width: 768px) {
+    html {
+      font-size: 87.5%;
+    }
+  
+    /* colocar a side bar para cima, ao invez de duas colunas apenas uma */
+    .wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
