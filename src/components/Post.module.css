@@ -83,15 +83,6 @@
   margin-top: 1rem;
 }
 
-.commentForm footer {
-  visibility: hidden;
-  max-height: 0;
-}
-
-.commentForm:focus-within footer {
-  visibility: visible;
-  max-height: none;
-}
 
 .commentForm button[type="submit"] {
   padding: 1rem 1.5rem;
@@ -106,8 +97,14 @@
   transition: background-color 0.1s;
 }
 
-.commentForm button[type="submit"]:hover {
+/* QUANDO NAO ESTIVER DISABLE AI MUDA COR DE FUNDO */
+.commentForm button[type="submit"]:not(:disabled)hover {
   background: var(--green-300);
+}
+
+.commentForm button:disabled{
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .commentList {
