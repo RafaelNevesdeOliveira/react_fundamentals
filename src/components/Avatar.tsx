@@ -5,11 +5,11 @@ interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement>{
   hasBorder?: boolean;
 }
 
-export function Avatar({hasBorder = true, src, alt}:AvatarProps ){
+//...props para pegarmos todas as propriedades da TAG img em questão e nao precisarmos ficar adicionando propriedades sempre que possível
+export function Avatar({hasBorder = true, ...props}:AvatarProps ){
   return(
     <img className={hasBorder ? styles.avatarWithBorder : styles.avatar} 
-    src={src} 
-    alt={alt}
+    {...props}
     />
   )
 }
